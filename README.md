@@ -1,5 +1,5 @@
 # PokemonClassification
-<h1><b>Introduction:</b></h1>
+<h3><b>Introduction:</b></h3>
 Image classification is a task within the field of artificial intelligence (AI) that involves categorizing images into specific classes or categories.
 
 “Pokémon” a popular Anime (Japanese Cartoon) that is centered around fictional creatures called "Pokémons”, features many unique characters, each with unique visual characteristics. In our project, we used three Pokémon characters Pikachu, Bulbasaur & Charmander, and developed an image classification system that identifies them using the KNN algorithm or model.
