@@ -43,7 +43,7 @@ Install the required packages:
 pip install -r requirements.txt
 
 ## Download the dataset:
-The dataset is not included in this repository due to its size. You can download it from here: https://drive.google.com/file/d/1DdPveV7mmDeVINTyhkQ_pKHZDDTkw0Po/view?usp=sharing
+The dataset is not included in this repository due to its size. You can download it from Kaggle: https://www.kaggle.com/datasets/rounakbanik/pokemon
 
 **Unzip the dataset:**
 After downloading, unzip the dataset. Place the training images in the Train/Images directory and the test images in the Test/Images directory.
