@@ -7,10 +7,6 @@ PokeKNN is a web app that predicts the name of a Pokémon from an uploaded image
 - Get the predicted name of the Pokémon.
 - Display the uploaded image and prediction result.
 
-## Demo / Screenshot
-
-![PokeKNN Application Demo](sample_screenshot.png)
-
 ## Technologies Used
 - Python
 - Flask
