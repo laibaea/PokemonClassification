@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Predictor</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="https://img.icons8.com/color/48/000000/pokeball-2.png" type="image/x-icon">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .card-header {
+            background-color: #ffcb05; /* Pokemon Yellow */
+            color: #3b5ba7; /* Pokemon Blue */
+            font-weight: bold;
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #c7a008;
+        }
+        .card-body {
+            padding: 2rem;
+        }
+        .form-control-file {
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            padding: .375rem .75rem;
+        }
+        .btn-predict {
+            background-color: #e63946; /* Pokemon Red */
+            border-color: #e63946;
+            color: white;
+            font-weight: bold;
+            padding: 0.75rem;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+        .btn-predict:hover {
+            background-color: #c0303c;
+            border-color: #c0303c;
+        }
+        .upload-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="max-width: 600px;">
+        <div class="card">
+            <div class="card-header">
+                <img src="https://img.icons8.com/color/48/000000/pokeball-2.png" alt="Pokeball" style="vertical-align: middle; margin-right: 10px;">
+                Pokémon Type Predictor (KNN)
+            </div>
+            <div class="card-body">
+                <p class="text-center text-muted mb-4">
+                    Upload an image of a Pokémon and let the K-Nearest Neighbors algorithm try to identify it!
+                </p>
+                <form method="POST" action="{{ url_for('predict') }}" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="imageUpload">Choose Pokémon Image:</label>
+                        <input type="file" class="form-control-file" id="imageUpload" name="image" accept=".jpg, .jpeg, .png" required>
+                    </div>
+                    <button type="submit" class="btn btn-predict btn-block mt-4">
+                        <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"/><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
+                        Predict Pokémon
+                    </button>
+                </form>
+            </div>
+        </div>
+        <footer>
+            Powered by Flask & KNN
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

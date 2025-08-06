@@ -1,10 +1,58 @@
-# PokemonClassification
-<h3><b>Introduction:</b></h3>
-Image classification is a task within the field of artificial intelligence (AI) that involves categorizing images into specific classes or categories.
+# PokeKNN: Pokémon Image Recognition with KNN
 
-“Pokémon” a popular Anime (Japanese Cartoon) that is centered around fictional creatures called "Pokémons”, features many unique characters, each with unique visual characteristics. In our project, we used three Pokémon characters Pikachu, Bulbasaur & Charmander, and developed an image classification system that identifies them using the KNN algorithm or model.
+PokeKNN is a web app that predicts the name of a Pokémon from an uploaded image using K-Nearest Neighbors (KNN). Built with Python, Flask, OpenCV, and Pandas.
 
-The dataset is carefully chosen, and various steps including collecting data, preparing it through preprocessing, extracting significant features, and developing a model using the K-Nearest Neighbors (KNN) algorithm, aim to capture the unique characteristics of Pokémon characters. The KNN algorithm is utilized to calculate similarity and predict labels based on the closest matches.
+## Features
+- Upload an image of a Pokémon.
+- Get the predicted name of the Pokémon.
+- Display the uploaded image and prediction result.
+
+## Demo / Screenshot
+
+![PokeKNN Application Demo](sample_screenshot.png)
+
+## Technologies Used
+- Python
+- Flask
+- OpenCV
+- Numpy
+- Pandas
+
+## Getting Started
+
+### Prerequisites
+Ensure you have Python 3.x and the following packages installed:
+- Flask
+- OpenCV
+- Numpy
+- Pandas
+
+### Installation
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/abdulrehmanra0/Pokemon-KNN.git
+   cd Pokemon-KNN
+Create a virtual environment and activate it:
 
 
-The project seeks to address the challenge of accurately identifying Pokémon characters from images and contribute to the field of computer vision by exploring methodologies for image classification. The ultimate goal is to create a system that can be applied to real-world applications involving Pokémon character recognition and potentially extending the techniques to similar domains.
+python -m venv venv
+source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+Install the required packages:
+
+
+pip install -r requirements.txt
+
+## Download the dataset:
+The dataset is not included in this repository due to its size. You can download it from here: https://drive.google.com/file/d/1DdPveV7mmDeVINTyhkQ_pKHZDDTkw0Po/view?usp=sharing
+
+**Unzip the dataset:**
+After downloading, unzip the dataset. Place the training images in the Train/Images directory and the test images in the Test/Images directory.
+
+### Running the App
+
+**Start the Flask app:**
+
+python app.py
+
+**Navigate to:**
+http://127.0.0.1:5000/

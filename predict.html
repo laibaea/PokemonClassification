@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Prediction Result</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="https://img.icons8.com/color/48/000000/pokeball-2.png" type="image/x-icon">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            font-family: 'Arial', sans-serif;
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .card-header {
+            background-color: #ffcb05;
+            color: #3b5ba7;
+            font-weight: bold;
+            font-size: 1.5rem;
+            border-bottom: 3px solid #c7a008;
+        }
+        .uploaded-image-container {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            margin: 0 auto 20px auto; /* Center image */
+            border: 5px solid #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        .uploaded-image {
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+            border-radius: 5px;
+        }
+        .prediction-text {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #e63946; /* Pokemon Red */
+            text-align: center;
+        }
+        .btn-again {
+            background-color: #4CAF50; /* Green */
+            border-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+        }
+        .btn-again:hover {
+            background-color: #45a049;
+        }
+        .neighbor-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        .neighbor-card {
+            width: 150px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .neighbor-image {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 5px;
+            border-radius: 4px;
+        }
+        .neighbor-label {
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        .neighbor-dist {
+            font-size: 0.8em;
+            color: #6c757d;
+        }
+         footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header text-center">
+                <img src="https://img.icons8.com/color/48/000000/pokeball-2.png" alt="Pokeball" style="vertical-align: middle; margin-right: 10px;">
+                Prediction Result
+            </div>
+            <div class="card-body">
+                {% if error %}
+                    <div class="alert alert-danger text-center" role="alert">
+                        <strong>Error:</strong> {{ error }}
+                    </div>
+                {% endif %}
+
+                {% if image_url %}
+                <div class="text-center mb-4">
+                    <h4>Uploaded Image:</h4>
+                    <div class="uploaded-image-container">
+                        <img src="{{ image_url }}" class="uploaded-image" alt="Uploaded Pokémon">
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if prediction %}
+                <div class="text-center mb-4">
+                    <h4>My Guess Is...</h4>
+                    <p class="prediction-text">{{ prediction }}!</p>
+                </div>
+                {% endif %}
+
+                {% if neighbors %}
+                <hr>
+                <h4 class="text-center mb-3">Closest Neighbors in My Pokédex (K={{ config.K_NEIGHBORS }}):</h4>
+                <div class="neighbor-gallery">
+                    {% for neighbor in neighbors %}
+                    <div class="neighbor-card">
+                        <img src="{{ neighbor.url }}" alt="{{ neighbor.label }}" class="neighbor-image">
+                        <div class="neighbor-label">{{ neighbor.label }}</div>
+                        <div class="neighbor-dist">Dist: {{ neighbor.distance }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <div class="text-center mt-5">
+                    <a href="{{ url_for('home') }}" class="btn btn-again btn-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16" style="vertical-align: middle; margin-right: 5px;">
+                          <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+                          <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.5A5.002 5.002 0 0 0 8 3zM3.5 13A5 5 0 0 0 8 15a5 5 0 0 0 4.857-3.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.5a5.002 5.002 0 0 0 4.5 4z"/>
+                        </svg>
+                        Predict Another Pokémon
+                    </a>
+                </div>
+            </div>
+        </div>
+         <footer>
+            KNN is comparing your image's color patterns to known Pokémon.
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
